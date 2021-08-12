@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package blockchain.v1alpha;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/xiaobaiskill/block-chain-release/api/protos/blockchain/v1alpha;blockchain";
+
+
+message GetAllData {
+    repeated BlockChain data = 1;
+}
+
+message BlockChain {
+    string name = 1;
+    repeated ReleaseInfo releases = 2;
+}
+
+message ReleaseInfo {
+    string project_name = 1;
+    string version = 2;
+    string url = 3;
+    google.protobuf.Timestamp time = 4;
+}

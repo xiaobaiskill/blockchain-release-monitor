@@ -1,0 +1,8 @@
+{
+  "rest_listen": ":80",
+  "grpc_listen": ":50051",
+  "notification": {
+    "work_wechat": "XXXX",
+    "slack": "XXXX"
+  }
+}

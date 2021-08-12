@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package blockchain.v1alpha;
+
+option go_package = "github.com/xiaobaiskill/block-chain-release/api/protos/blockchain/v1alpha;blockchain";
+
+import "google/protobuf/empty.proto";
+import "blockchain/v1alpha/common.proto";
+
+service InternalRelease {
+    rpc GetAllRelease(google.protobuf.Empty)  returns (blockchain.v1alpha.GetAllData) {}
+}
+

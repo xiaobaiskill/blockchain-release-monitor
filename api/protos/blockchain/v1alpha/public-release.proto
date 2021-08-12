@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package blockchain.v1alpha;
+
+option go_package = "github.com/xiaobaiskill/block-chain-release/api/protos/blockchain/v1alpha;blockchain";
+
+import "google/protobuf/empty.proto";
+import "blockchain/v1alpha/common.proto";
+import "google/api/annotations.proto";
+//import "protoc-gen-swagger/options/annotations.proto";
+// Define the content of swagger
+//option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+//    schemes: HTTP
+//    schemes: HTTPS
+//    host: "www.xiaobaiskill.com"
+//    base_path : "/blockchain"
+//    security_definitions: {
+//        security: {
+//            key: "ApiKeyHeader"
+//            value: {
+//                type: TYPE_API_KEY
+//                in: IN_HEADER
+//                name: "Authorization"
+//            };
+//        }
+//    }
+//};
+
+
+service PublicRelease {
+    rpc GetAllRelease(google.protobuf.Empty)  returns (blockchain.v1alpha.GetAllData) {
+        option (google.api.http) = {
+            get: "/api/v1alpha/all"
+            additional_bindings {
+                get: "/v1alpha/blockchain-release-monitor"
+            }
+        };
+    }
+}
