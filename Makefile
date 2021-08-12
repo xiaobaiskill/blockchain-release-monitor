@@ -21,7 +21,7 @@ test: vet
 
 .PHONY: build
 build: vet
-	@CGO_ENABLED=0 go build -race -ldflags="-s -w" -o build/app .
+	@CGO_ENABLED=0 go build  -ldflags="-s -w" -o build/app .
 
 .PHONY: run
 run:
@@ -41,7 +41,7 @@ proto: proto-clean
 docker-build:
 	@echo "build docker image"
 	@SHA1_SHORT=$(shell git rev-parse --short HEAD); \
-	docker build -t $(REPO_PREFIX)/$(REPO_NAME):$$ENV .
+	docker build -t $(REPO_PREFIX)/$(REPO_NAME):$$SHA1_SHORT .
 
 .PHONY: docker-push
 docker-push: docker-build

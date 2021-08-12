@@ -2,14 +2,14 @@ package server
 
 import (
 	"encoding/json"
-	"github.com/xiaobaiskill/kit/app"
-	"github.com/xiaobaiskill/kit/rest"
-	"github.com/xiaobaiskill/kit/rpc"
 	"github.com/spf13/cobra"
 	"github.com/xiaobaiskill/blockchain-release-monitor/internal/handler"
 	"github.com/xiaobaiskill/blockchain-release-monitor/internal/service"
 	"github.com/xiaobaiskill/blockchain-release-monitor/pkg/notification/slack"
 	work_wechat "github.com/xiaobaiskill/blockchain-release-monitor/pkg/notification/work-wechat"
+	"github.com/xiaobaiskill/kit/app"
+	"github.com/xiaobaiskill/kit/rest"
+	"github.com/xiaobaiskill/kit/rpc"
 	"go.uber.org/zap"
 	"io/ioutil"
 )

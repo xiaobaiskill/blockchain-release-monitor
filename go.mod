@@ -13,7 +13,7 @@ require (
 	github.com/spf13/cobra v1.2.1
 	github.com/stretchr/testify v1.7.0
 	github.com/xiaobaiskill/blockchain-release-monitor/api v0.0.0
-	github.com/xiaobaiskill/kit v0.0.0-20210811141850-3d9434535cbd
+	github.com/xiaobaiskill/kit v0.0.0-20210812030803-91ed4b16412c
 	go.uber.org/zap v1.17.0
 	google.golang.org/grpc v1.39.1
 	google.golang.org/protobuf v1.27.1

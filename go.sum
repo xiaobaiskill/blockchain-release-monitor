@@ -344,8 +344,8 @@ github.com/subosito/gotenv v1.2.0/go.mod h1:N0PQaV/YGNqwC0u51sEeR/aUtSLEXKX9iv69
 github.com/tidwall/pretty v1.0.0/go.mod h1:XNkn88O1ChpSDQmQeStsy+sBenx6DDtFZJxhVysOjyk=
 github.com/xdg/scram v0.0.0-20180814205039-7eeb5667e42c/go.mod h1:lB8K/P019DLNhemzwFU4jHLhdvlE6uDZjXFejJXr49I=
 github.com/xdg/stringprep v0.0.0-20180714160509-73f8eece6fdc/go.mod h1:Jhud4/sHMO4oL310DaZAKk9ZaJ08SJfe+sJh0HrGL1Y=
-github.com/xiaobaiskill/kit v0.0.0-20210811141850-3d9434535cbd h1:hFd12qPGwrI/g59I26TcaFypr8tAwEs5k3T+KS8qDhk=
-github.com/xiaobaiskill/kit v0.0.0-20210811141850-3d9434535cbd/go.mod h1:KwJeh0aNtbfPOHBUe/idFr5u6rLGHVyRuAimmjc1w/o=
+github.com/xiaobaiskill/kit v0.0.0-20210812030803-91ed4b16412c h1:kv3Jxvb7XdzZXddVWsfRB9Kinav1xPmit2GyUKGBohI=
+github.com/xiaobaiskill/kit v0.0.0-20210812030803-91ed4b16412c/go.mod h1:KwJeh0aNtbfPOHBUe/idFr5u6rLGHVyRuAimmjc1w/o=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

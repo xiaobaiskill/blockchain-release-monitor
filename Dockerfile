@@ -5,8 +5,7 @@ WORKDIR /src
 
 ADD . .
 
-RUN CGO_ENABLE=0 go build  -ldflags="-s -w" -race -o ./build/app .
-
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o ./build/app .
 
 FROM alpine
 WORKDIR /
