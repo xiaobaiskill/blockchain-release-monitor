@@ -65,7 +65,7 @@ func (b *blockChainImpl) ReleaseWatch(ctx context.Context) {
 
 					notification.RecvMsg(ctx, notification.Msg{
 						Title: bc.Name,
-						Level: 0,
+						Level: notification.Info,
 						Data: map[string]interface{}{
 							"project": bc.Project,
 							"version": bc.Version,

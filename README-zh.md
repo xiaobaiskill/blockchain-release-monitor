@@ -1,10 +1,8 @@
 blockchain release monitor
 ---
-blockchain release monitor is a monitoring and notification system for version updates of blockchain projects.
-See the [中文文档](./README-zh.md) for Chinese readme.
+blockchain release monitor 是区块链项目版本更新的监控通知系统。
 
-
-### Monitored blockchain projects
+### 监控的公链项目
 * Etherum
 * Etherum2.0
 * Binance Smart Chain(bsc)
@@ -14,14 +12,15 @@ See the [中文文档](./README-zh.md) for Chinese readme.
 * Polkadot Relay Chain(polkadot)
 * avalanche
 
-### Getting Started
+### 如何使用
 * vim .config.json
 ```
 {
   "rest_listen": ":80",
   "grpc_listen": ":50051",
   "notification": {
-    "slack": "slack webhook url"
+    "work_wechat": "XXXX",
+    "slack": "XXXX"
   }
 }
 ```
