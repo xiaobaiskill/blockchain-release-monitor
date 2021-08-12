@@ -5,10 +5,10 @@ WORKDIR /src
 
 ADD . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o ./build/app .
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o ./build/blockchain-release-monitor .
 
 FROM alpine
 WORKDIR /
 COPY --from=builder /src/build/ /
-ENTRYPOINT ["/app"]
-CMD ["server",".config.json"]
+ENTRYPOINT ["/blockchain-release-monitor"]
+CMD ["server","/config.json"]

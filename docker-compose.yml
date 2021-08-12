@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  monitor:
+    image: jinmz/blockchain-release-monitor:prod
+    command:
+      - server
+      - /config.json
+    restart: always
+    volumes:
+      - "./.config.json:/config.json"
+    ports:
+      - 8080:80
+      - 50051:50051

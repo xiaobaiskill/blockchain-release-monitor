@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 PKGMAP=Mblockchain/v1alpha/common.proto=github.com/xiaobaiskill/blockchain-release-monitor/api/protos/blockchain/v1alpha
 REPO_NAME ?= blockchain-release-monitor
-REPO_PREFIX ?= jinmingzhi
+REPO_PREFIX ?= jinmz
 
 .PHONY: all
 all: proto build
@@ -49,12 +49,11 @@ docker-push: docker-build
 	@BRANCH_NAME=$(shell git rev-parse --abbrev-ref HEAD); SHA1_SHORT=$(shell git rev-parse --short HEAD); \
 	if [[ $$BRANCH_NAME == "develop" ]]; then \
 		ENV="stage"; \
-	elif [[ $$BRANCH_NAME == "master" ]]; then \
+	elif [[ $$BRANCH_NAME == "main" ]]; then \
 		ENV="prod"; \
 	else \
 		ENV="feat"; \
 	fi;  \
-	docker tag $(REPO_PREFIX)/$(REPO_NAME):$$ENV  $(REPO_PREFIX)/$(REPO_NAME):$$SHA1_SHORT; \
+	docker tag $(REPO_PREFIX)/$(REPO_NAME):$$SHA1_SHORT  $(REPO_PREFIX)/$(REPO_NAME):$$ENV; \
 	docker push $(REPO_PREFIX)/$(REPO_NAME):$$SHA1_SHORT; \
 	docker push $(REPO_PREFIX)/$(REPO_NAME):$$ENV;
-
