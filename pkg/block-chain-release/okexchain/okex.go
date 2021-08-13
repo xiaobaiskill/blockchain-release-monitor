@@ -10,25 +10,21 @@ const (
 	name        = "okexchain"
 	projectName = "exchain"
 	url         = "https://github.com/okex/exchain/releases/latest"
-	sleepTime   = time.Hour
 )
 
 type okex struct {
-	version string
+	version   string
+	sleepTime time.Duration
 }
 
-func init() {
-	blockchain.RegisterBlockChainRelease(name, newOkex())
-}
-
-func newOkex() *okex {
-	return &okex{}
+func NewOkex(sleepTime time.Duration) *okex {
+	return &okex{sleepTime: sleepTime}
 }
 
 func (e *okex) RunWithChan(bc chan<- blockchain.BlockChainReleaseMsg) {
 	go func() {
 		e.getVersionToChan(bc)
-		tc := time.NewTicker(sleepTime)
+		tc := time.NewTicker(e.sleepTime)
 		for range tc.C {
 			e.getVersionToChan(bc)
 		}

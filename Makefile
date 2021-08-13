@@ -1,8 +1,7 @@
 SHELL = /bin/bash
 
 PKGMAP=Mblockchain/v1alpha/common.proto=github.com/xiaobaiskill/blockchain-release-monitor/api/protos/blockchain/v1alpha
-REPO_NAME ?= blockchain-release-monitor
-REPO_PREFIX ?= jinmz
+REPO ?= jinmz/blockchain-release-monitor
 
 .PHONY: all
 all: proto build
@@ -21,7 +20,7 @@ test: vet
 
 .PHONY: build
 build: vet
-	@CGO_ENABLED=0 go build  -ldflags="-s -w" -o build/app .
+	@CGO_ENABLED=1 go build -race -ldflags="-s -w" -o build/app .
 
 .PHONY: run
 run:
@@ -41,7 +40,7 @@ proto: proto-clean
 docker-build:
 	@echo "build docker image"
 	@SHA1_SHORT=$(shell git rev-parse --short HEAD); \
-	docker build -t $(REPO_PREFIX)/$(REPO_NAME):$$SHA1_SHORT .
+	docker build -t $(REPO):$$SHA1_SHORT .
 
 .PHONY: docker-push
 docker-push: docker-build
@@ -54,6 +53,6 @@ docker-push: docker-build
 	else \
 		ENV="feat"; \
 	fi;  \
-	docker tag $(REPO_PREFIX)/$(REPO_NAME):$$SHA1_SHORT  $(REPO_PREFIX)/$(REPO_NAME):$$ENV; \
-	docker push $(REPO_PREFIX)/$(REPO_NAME):$$SHA1_SHORT; \
-	docker push $(REPO_PREFIX)/$(REPO_NAME):$$ENV;
+	docker tag $(REPO):$$SHA1_SHORT  $(REPO):$$ENV; \
+	docker push $(REPO):$$SHA1_SHORT; \
+	docker push $(REPO):$$ENV;

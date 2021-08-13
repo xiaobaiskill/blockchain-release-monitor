@@ -1,9 +1,9 @@
 package block_chain_release
 
-var blockChainReleaseMap = make(map[string]blockChainReleaser)
+var blockChainReleaseMap = make([]blockChainReleaser, 0, 10)
 
-func RegisterBlockChainRelease(name string, bc blockChainReleaser) {
-	blockChainReleaseMap[name] = bc
+func RegisterBlockChainRelease(bc ...blockChainReleaser) {
+	blockChainReleaseMap = append(blockChainReleaseMap, bc...)
 }
 
 func BlockChainMapRun(blockChainMsgCh chan<- BlockChainReleaseMsg) {

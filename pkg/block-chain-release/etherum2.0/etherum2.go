@@ -10,25 +10,23 @@ const (
 	name        = "etherum2.0"
 	projectName = "prysm"
 	url         = "https://github.com/prysmaticlabs/prysm/releases/latest"
-	sleepTime   = time.Hour
 )
 
 type eth2 struct {
-	version string
+	version   string
+	sleepTime time.Duration
 }
 
-func init() {
-	blockchain.RegisterBlockChainRelease(name, newEth2())
-}
-
-func newEth2() *eth2 {
-	return &eth2{}
+func NewEth2(sleepTime time.Duration) *eth2 {
+	return &eth2{
+		sleepTime: sleepTime,
+	}
 }
 
 func (e *eth2) RunWithChan(bc chan<- blockchain.BlockChainReleaseMsg) {
 	go func() {
 		e.getVersionToChan(bc)
-		tc := time.NewTicker(sleepTime)
+		tc := time.NewTicker(e.sleepTime)
 		for range tc.C {
 			e.getVersionToChan(bc)
 		}

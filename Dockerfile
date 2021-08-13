@@ -10,5 +10,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o ./build/blockchain-rel
 FROM alpine
 WORKDIR /
 COPY --from=builder /src/build/ /
+COPY --from=builder /src/config.json /config.json
 ENTRYPOINT ["/blockchain-release-monitor"]
 CMD ["server","/config.json"]

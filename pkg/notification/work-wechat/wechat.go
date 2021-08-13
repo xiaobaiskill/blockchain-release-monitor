@@ -18,8 +18,8 @@ type workWeChat struct {
 	client   *http.Client
 }
 
-func RegisterNotice(url string) {
-	wx := newWorkWeChat(url, 3)
+func RegisterNotice(url string, retryNum int) {
+	wx := newWorkWeChat(url, retryNum)
 	notification.RegisterNotice(wx)
 	go wx.handleMsg()
 }

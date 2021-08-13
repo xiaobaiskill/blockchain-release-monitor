@@ -18,8 +18,8 @@ type slack struct {
 	client   *http.Client
 }
 
-func RegisterNotice(url string) {
-	s := newSlack(url, 3)
+func RegisterNotice(url string, retryNum int) {
+	s := newSlack(url, retryNum)
 	notification.RegisterNotice(s)
 	go s.handleMsg()
 }

@@ -10,25 +10,23 @@ const (
 	name        = "etherum"
 	projectName = "etherum"
 	url         = "https://github.com/ethereum/go-ethereum/releases/latest"
-	sleepTime   = time.Hour
 )
 
 type eth struct {
-	version string
+	version   string
+	sleepTime time.Duration
 }
 
-func init() {
-	blockchain.RegisterBlockChainRelease(name, newEth())
-}
-
-func newEth() *eth {
-	return &eth{}
+func NewEth(sleepTime time.Duration) *eth {
+	return &eth{
+		sleepTime: sleepTime,
+	}
 }
 
 func (e *eth) RunWithChan(bc chan<- blockchain.BlockChainReleaseMsg) {
 	go func() {
 		e.getVersionToChan(bc)
-		tc := time.NewTicker(sleepTime)
+		tc := time.NewTicker(e.sleepTime)
 		for range tc.C {
 			e.getVersionToChan(bc)
 		}

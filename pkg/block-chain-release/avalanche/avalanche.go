@@ -10,25 +10,23 @@ const (
 	name        = "avalanche"
 	projectName = "avalanchego"
 	url         = "https://github.com/ava-labs/avalanchego/releases/latest"
-	sleepTime   = time.Hour
 )
 
 type avalanche struct {
-	version string
+	version   string
+	sleepTime time.Duration
 }
 
-func init() {
-	blockchain.RegisterBlockChainRelease(name, newAvalanche())
-}
-
-func newAvalanche() *avalanche {
-	return &avalanche{}
+func NewAvalanche(sleepTime time.Duration) *avalanche {
+	return &avalanche{
+		sleepTime: sleepTime,
+	}
 }
 
 func (e *avalanche) RunWithChan(bc chan<- blockchain.BlockChainReleaseMsg) {
 	go func() {
 		e.getVersionToChan(bc)
-		tc := time.NewTicker(sleepTime)
+		tc := time.NewTicker(e.sleepTime)
 		for range tc.C {
 			e.getVersionToChan(bc)
 		}

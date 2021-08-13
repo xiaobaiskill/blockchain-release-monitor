@@ -10,25 +10,23 @@ const (
 	name        = "binance smart chain"
 	projectName = "binance-chain"
 	url         = "https://github.com/binance-chain/bsc/releases/latest"
-	sleepTime   = time.Hour
 )
 
 type bsc struct {
-	version string
+	version   string
+	sleepTime time.Duration
 }
 
-func init() {
-	blockchain.RegisterBlockChainRelease(name, newBsc())
-}
-
-func newBsc() *bsc {
-	return &bsc{}
+func NewBsc(sleepTime time.Duration) *bsc {
+	return &bsc{
+		sleepTime: sleepTime,
+	}
 }
 
 func (e *bsc) RunWithChan(bc chan<- blockchain.BlockChainReleaseMsg) {
 	go func() {
 		e.getVersionToChan(bc)
-		tc := time.NewTicker(sleepTime)
+		tc := time.NewTicker(e.sleepTime)
 		for range tc.C {
 			e.getVersionToChan(bc)
 		}

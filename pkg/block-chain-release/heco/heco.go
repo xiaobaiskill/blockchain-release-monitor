@@ -10,25 +10,21 @@ const (
 	name        = "heco"
 	projectName = "huobi-eco-chain"
 	url         = "https://github.com/HuobiGroup/huobi-eco-chain/releases/latest"
-	sleepTime   = time.Hour
 )
 
 type heco struct {
-	version string
+	version   string
+	sleepTime time.Duration
 }
 
-func init() {
-	blockchain.RegisterBlockChainRelease(name, newHeco())
-}
-
-func newHeco() *heco {
-	return &heco{}
+func NewHeco(sleepTime time.Duration) *heco {
+	return &heco{sleepTime: sleepTime}
 }
 
 func (e *heco) RunWithChan(bc chan<- blockchain.BlockChainReleaseMsg) {
 	go func() {
 		e.getVersionToChan(bc)
-		tc := time.NewTicker(sleepTime)
+		tc := time.NewTicker(e.sleepTime)
 		for range tc.C {
 			e.getVersionToChan(bc)
 		}

@@ -10,25 +10,21 @@ const (
 	name        = "polkadot"
 	projectName = "polkadot"
 	url         = "https://github.com/paritytech/polkadot/releases/latest"
-	sleepTime   = time.Hour
 )
 
 type polkadot struct {
-	version string
+	version   string
+	sleepTime time.Duration
 }
 
-func init() {
-	blockchain.RegisterBlockChainRelease(name, newPolkadot())
-}
-
-func newPolkadot() *polkadot {
-	return &polkadot{}
+func NewPolkadot(sleepTime time.Duration) *polkadot {
+	return &polkadot{sleepTime: sleepTime}
 }
 
 func (e *polkadot) RunWithChan(bc chan<- blockchain.BlockChainReleaseMsg) {
 	go func() {
 		e.getVersionToChan(bc)
-		tc := time.NewTicker(sleepTime)
+		tc := time.NewTicker(e.sleepTime)
 		for range tc.C {
 			e.getVersionToChan(bc)
 		}

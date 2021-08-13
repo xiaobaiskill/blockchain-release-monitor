@@ -12,26 +12,24 @@ const (
 	borUrl       = "https://github.com/maticnetwork/bor/releases/latest"
 	heimdallName = "heimdall"
 	heimdallUrl  = "https://github.com/maticnetwork/heimdall/releases/latest"
-	sleepTime    = time.Hour
 )
-
-func init() {
-	blockchain.RegisterBlockChainRelease(name, newPolygon())
-}
 
 type polygon struct {
 	borVersion, heimdallVersion string
+	sleepTime                   time.Duration
 }
 
-func newPolygon() *polygon {
-	return &polygon{}
+func NewPolygon(sleepTime time.Duration) *polygon {
+	return &polygon{
+		sleepTime: sleepTime,
+	}
 }
 
 func (p *polygon) RunWithChan(bc chan<- blockchain.BlockChainReleaseMsg) {
 	go func() {
 		p.getVersionOfBorToChan(bc)
 		p.getVersionOfHeimdallToChan(bc)
-		tc := time.NewTicker(sleepTime)
+		tc := time.NewTicker(p.sleepTime)
 		for range tc.C {
 			p.getVersionOfBorToChan(bc)
 			p.getVersionOfHeimdallToChan(bc)

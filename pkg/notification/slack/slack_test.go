@@ -7,13 +7,14 @@ import (
 )
 
 func TestWorkWeChat_Send(t *testing.T) {
-	testwx := newSlack("https://hooks.slack.com/services/XXX/XXX/XXX", 3)
+	testwx := newSlack("https://hooks.slack.com/services/XXXX", 3)
 	err := testwx.send(notification.Msg{
-		Title: "test",
-		Level: notification.Error,
+		Title: "binance smart chain",
+		Level: notification.Info,
 		Data: map[string]interface{}{
-			"test1": "test1",
-			"test2": "test2",
+			"project": "binance-chain",
+			"version": "v1.1.1",
+			"url":     "https://github.com/binance-chain/bsc/releases/latest",
 		},
 	})
 	assert.NoError(t, err)

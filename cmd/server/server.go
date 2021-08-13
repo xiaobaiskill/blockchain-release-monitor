@@ -5,8 +5,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xiaobaiskill/blockchain-release-monitor/internal/handler"
 	"github.com/xiaobaiskill/blockchain-release-monitor/internal/service"
-	"github.com/xiaobaiskill/blockchain-release-monitor/pkg/notification/slack"
-	work_wechat "github.com/xiaobaiskill/blockchain-release-monitor/pkg/notification/work-wechat"
+	"github.com/xiaobaiskill/blockchain-release-monitor/pkg/notification/register"
 	"github.com/xiaobaiskill/kit/app"
 	"github.com/xiaobaiskill/kit/rest"
 	"github.com/xiaobaiskill/kit/rpc"
@@ -40,12 +39,8 @@ func run(_ *cobra.Command, args []string) {
 	var cfg serverConfig
 	initConfig(args[0], &cfg)
 
-	if cfg.Notification.WorkWechat != nil {
-		work_wechat.RegisterNotice(*cfg.Notification.WorkWechat)
-	}
-	if cfg.Notification.Slack != nil {
-		slack.RegisterNotice(*cfg.Notification.Slack)
-	}
+	log.Info("init notification")
+	registerNotification(cfg)
 
 	log.Info("init service")
 	service.GlobalInit()
@@ -71,4 +66,11 @@ func run(_ *cobra.Command, args []string) {
 	restServer.ListenAndServed()
 
 	app.Exit()
+}
+
+func registerNotification(cfg serverConfig) {
+	register.Register(register.Webhooks{
+		Slack:  cfg.Notification.Slack,
+		WeChat: cfg.Notification.WorkWechat,
+	})
 }
