@@ -30,3 +30,9 @@ See the [中文文档](./README-zh.md) for Chinese readme.
 ```
 docker-compose up -d
 ```
+
+### notification 
+
+Please use the following method to enter the notification group:
+
+- Slack: [invite link](https://join.slack.com/t/perception-networkhq/shared_invite/zt-tq6mee6b-ETN3P3kP28BRpn3BHsSCJw)

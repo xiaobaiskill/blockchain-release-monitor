@@ -29,3 +29,9 @@ blockchain release monitor 是区块链项目版本更新的监控通知系统�
 ```
 docker-compose up -d
 ```
+
+### 监控通知群
+
+请同意一下方式进入监控通知群：
+
+* slack: [邀请连接](https://join.slack.com/t/perception-networkhq/shared_invite/zt-tq6mee6b-ETN3P3kP28BRpn3BHsSCJw)
