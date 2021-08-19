@@ -9,6 +9,7 @@ import (
 	"github.com/xiaobaiskill/blockchain-release-monitor/pkg/block-chain-release/heco"
 	"github.com/xiaobaiskill/blockchain-release-monitor/pkg/block-chain-release/okexchain"
 	"github.com/xiaobaiskill/blockchain-release-monitor/pkg/block-chain-release/polygon"
+	"github.com/xiaobaiskill/blockchain-release-monitor/pkg/block-chain-release/polkadot"
 	"time"
 )
 
@@ -25,6 +26,6 @@ func init() {
 		heco.NewHeco(sleepTime),
 		okexchain.NewOkex(sleepTime),
 		polygon.NewPolygon(sleepTime),
-		polygon.NewPolygon(sleepTime),
+		polkadot.NewPolkadot(sleepTime),
 	)
 }
