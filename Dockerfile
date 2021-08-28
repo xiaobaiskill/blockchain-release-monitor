@@ -2,6 +2,7 @@ FROM golang:1.14-alpine as builder
 LABEL builder=blockchain-release-monitor
 
 WORKDIR /src
+RUN go env -w GOPROXY="https://goproxy.cn,direct"
 
 ADD . .
 
